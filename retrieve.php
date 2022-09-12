@@ -1,7 +1,9 @@
 <?php
 Class Retrieve{
-    public function __construct(){        
+
+    public function __construct(){
     }
+
     public function retrieveData(){
         $dsn = "mysql:host=localhost;dbname=pdc10_db";
         $user = "root";

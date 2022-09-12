@@ -14,6 +14,19 @@ $error = $_GET['error'] ?? null;
     <title>Registrations</title>
 </head>
 <body>
+        <div class="container-sm">
+                 <?php if (!is_null($success)): ?>
+                         <div class="alert alert-success" role="alert">
+                                 Successfully saved your registration!
+                         </div>
+            <?php endif ?>
+            
+            <?php if (!is_null($error)): ?>
+                <div class="alert alert-danger" role="alert">
+                    Failed to save your registration, please upload the appropriate file type.
+                </div>
+                <?php endif ?>
+
 <div class="container">
         <div class="row">
             <div class="col-9"><h1>Registrations</h1></div>
@@ -26,32 +39,32 @@ $error = $_GET['error'] ?? null;
     </div>
     <div class="container">
     <table class="table table-hover">
-        <thead>
-            <tr class="table">
-            <th scope="col">ID</th>
-            <th scope="col">Complete Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Picture</th>
-            <th scope="col">Registered Date</th>
-            </tr>
-        </thead>
-        <tbody>
-
-        <?php
-             $retrieve = new Retrieve;
-             $retrieveData = $retrieve->retrieveData();
-             foreach($retrieveData as $data){
-        ?>
-            <tr>
-            <th scope="row"><?php echo $data['id']?></th>
-            <td><?php echo $data['complete_name']?></td>
-            <td><?php echo $data['email']?></td>
-            <td><?php echo "<img width=150px;height=150px; src=" . $data['picture_path'] . ">";?></td>
-            <td><?php echo $data['registered_at']?></td>
-            </tr>
-        <?php } ?>
-        </tbody>
-    </table>
+    <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Complete Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Picture</th>
+                    <th scope="col">Registered Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $retrieve = new Retrieve;
+                $retrieveData = $retrieve->retrieveData();
+                foreach($retrieveData as $data){
+                    ?>
+                    <tr>
+                        <th scope="row"><?php echo $data['id']?></th>
+                        <td><?php echo $data['complete_name']?></td>
+                        <td><?php echo $data['email']?></td>
+                        <td><?php echo "<img width=200x; height=200x; src=" . $data['picture_path'] . ">";?></td>
+                        <td><?php echo $data['registered_at']?></td>
+                    </tr>
+                    <?php } ?>				
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>
